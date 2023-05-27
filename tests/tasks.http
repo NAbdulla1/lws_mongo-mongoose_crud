@@ -1,0 +1,25 @@
+POST http://localhost:3000/api/tasks
+Content-Type: application/json
+
+{
+  "title": "Read Node doc",
+  "description": "Read Node js doc from the website."
+}
+
+###
+GET http://localhost:3000/api/tasks
+
+###
+GET http://localhost:3000/api/tasks/64720ac9e6dd57c972dd848d
+
+###
+PUT http://localhost:3000/api/tasks/64720ac9e6dd57c972dd848d
+Content-Type: application/json
+
+{
+  "title": "Read Node documentation",
+  "description": "Read Node js doc from the website."
+}
+
+###
+DELETE http://localhost:3000/api/tasks/6471fa545e758d7ede391b39
