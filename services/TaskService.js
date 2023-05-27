@@ -13,7 +13,7 @@ const TaskService = {
     return await Task.findOne({ _id: taskId });
   },
   update: async function (taskId, task) {
-    return await Task.UpdateOne({ _id: taskId }, task);
+    return await Task.updateOne({ _id: taskId }, task);
   },
   destroy: async function (taskId) {
     return await Task.deleteOne({ _id: taskId });

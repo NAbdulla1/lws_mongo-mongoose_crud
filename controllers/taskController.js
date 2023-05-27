@@ -1,4 +1,4 @@
-const TaskService = require("../services/TaskService");
+const TaskService = require("../services/taskService");
 const logger = require("../logger");
 
 const TaskController = {
@@ -26,7 +26,7 @@ const TaskController = {
       res.status(200).json(task);
     } catch (error) {
       logger.error(error.message, error);
-      res.sendStatus(500);
+      res.status(500).json();
     }
   },
   update: async function (req, res) {
@@ -35,16 +35,16 @@ const TaskController = {
       res.status(200).json(upd);
     } catch (error) {
       logger.error(error.message, error);
-      res.sendStatus(500);
+      res.status(500).json();
     }
   },
   destroy: async function (req, res) {
     try {
       await TaskService.destroy(req.params.id);
-      res.sendStatus(204);
+      res.status(204).json();
     } catch (error) {
       logger.error(error.message, error);
-      res.sendStatus(500);
+      res.status(500).json();
     }
   }
 };

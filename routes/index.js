@@ -10,4 +10,8 @@ router.route("/")
 
 router.use("/api", apiRouter);
 
+router.all("*", (req, res) => {
+  res.status(404).json();
+})
+
 module.exports = router;
