@@ -7,10 +7,10 @@ const TaskService = {
     return task;
   },
   getAll: async function (user) {
-    return await Task.find({ user: user._id });
+    return await Task.find({ user: user._id }).populate("user", "-password -__v");
   },
   get: async function (taskId, user) {
-    return await Task.findOne({ _id: taskId, user: user._id });
+    return await Task.findOne({ _id: taskId, user: user._id }).populate("user", "-password -__v");
   },
   update: async function (taskId, task, user) {
     const updData = await Task.updateOne({ _id: taskId, user: user._id }, task);
