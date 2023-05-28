@@ -6,13 +6,13 @@ const authenticateUser = require("../middlewares/authMiddleware");
 const apiRouter = new Router();
 
 apiRouter.route("/tasks")
-  .post(TaskController.create)
-  .get(TaskController.getAll);
+  .post(authenticateUser, TaskController.create)
+  .get(authenticateUser, TaskController.getAll);
 
 apiRouter.route("/tasks/:id")
-  .get(TaskController.get)
-  .put(TaskController.update)
-  .delete(TaskController.destroy);
+  .get(authenticateUser, TaskController.get)
+  .put(authenticateUser, TaskController.update)
+  .delete(authenticateUser, TaskController.destroy);
 
 apiRouter.get("/users", authenticateUser, UserController.getAll);
 apiRouter.route("/users/:id")

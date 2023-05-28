@@ -8,8 +8,9 @@ const JWTService = {
   },
   verifyToken: async function (token) {
     const userData = jwt.verify(token, JWT_SECRET);
-    if (await User.exists({ username: userData.username })) {
-      return userData;
+    const user = await User.findOne({ username: userData.username });
+    if (user) {
+      return user.toObject();
     } else {
       return null;
     }
