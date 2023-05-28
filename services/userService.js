@@ -14,8 +14,12 @@ const UserService = {
   getAll: async function () {
     return User.find({}).select({ password: 0, __v: 0 });
   },
-  get: async function (userId) {
-    return User.findOne({ _id: userId }).select({ password: 0, __v: 0 });
+  get: async function (userId, includeTasks) {
+    const user = await User.findOne({ _id: userId }).select({ password: 0, __v: 0 });
+    if (user && includeTasks) {
+      await user.populate('tasks');
+    }
+    return user;
   },
   destroy: async function (userId) {
     return await User.deleteOne({ _id: userId });

@@ -22,7 +22,8 @@ const UserController = {
   },
   get: async function (req, res) {
     try {
-      const user = await UserService.get(req.params.id);
+      const includeTasks = req.query['tasks'] === 'true';
+      const user = await UserService.get(req.params.id, includeTasks);
       res.status(200).json(user);
     } catch (error) {
       logger.error(error.message, error);
